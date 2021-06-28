@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option csharp_namespace = "League.GRPC.Protos";
+
+service TeamProtoService {
+	rpc GetTeam (GetTeamRequest) returns (TeamModel);
+	rpc GetTeamByName (GetTeamByNameRequest) returns (TeamModel);
+	rpc GetTeams (GetTeamsFilerRequest) returns (TeamModels);
+	rpc CreateTeam (CreateTeamRequest) returns (TeamModel);
+	rpc UpdateTeam (UpdateTeamRequest) returns (TeamModel);
+	rpc DeleteTeam (DeleteTeamRequest) returns (DeleteTeamResponse);
+}
+
+message GetTeamRequest {
+	int32 id = 1;
+}
+
+message TeamModel {
+	int32 id = 1;
+	string name = 2;
+	string LogoImage = 3;
+	string JerseyImage = 4;
+	bool isDeleted = 5;
+}
+
+message GetTeamByNameRequest {
+	string name = 1; 
+}
+
+message TeamModels {
+	repeated TeamModel teams = 1;
+}
+
+message GetTeamsFilerRequest {
+	bool isDeleted = 1;
+}
+
+message CreateTeamRequest {
+	TeamModel team = 1;
+}
+
+message UpdateTeamRequest {
+	TeamModel team = 1;
+}
+
+message DeleteTeamRequest {
+	int32 id = 1;
+}
+
+message DeleteTeamResponse {
+	bool success = 1;
+}

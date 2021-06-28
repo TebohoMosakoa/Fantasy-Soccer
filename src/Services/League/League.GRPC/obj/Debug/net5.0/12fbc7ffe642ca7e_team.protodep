@@ -1,0 +1,2 @@
+obj\Debug\net5.0\Protos/Team.cs \
+obj\Debug\net5.0\Protos/TeamGrpc.cs: Protos/team.proto

@@ -1,0 +1,81 @@
+version: '3.4'
+
+services:
+  
+  fantasydb:
+    container_name: fantasydb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  fantasyteamdb:
+    container_name: fantasyteamdb
+    restart: always
+    ports:
+      - "6379:6379"
+
+  leaguedb:
+    container_name: leaguedb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=LeagueDb
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mosakoateboho@gmail.com.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+        - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  fantasyteam.api:
+    container_name: fantasyteamapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=fantasyteamdb:6379"
+    depends_on:
+      - fantasyteamdb
+    ports:
+      - "8003:80"
+
+  fantasy.api:
+    container_name: fantasyapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://fantasydb:27017"
+    depends_on:
+      - fantasydb
+    ports:
+      - "8002:80"
+
+  league.api:
+    container_name: leagueapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=leaguedb;Port=5432;Database=LeagueDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - leaguedb
+    ports:
+      - "8001:80"
+

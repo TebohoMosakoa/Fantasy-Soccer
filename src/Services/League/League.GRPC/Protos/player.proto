@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "League.GRPC.Protos";
+
+service PlayerProtoService {
+	rpc GetPlayer (GetPlayerRequest) returns (PlayerModel);
+	rpc GetPlayersByName (GetPlayerByNameRequest) returns (PlayerModels);
+	rpc GetPlayers (GetPlayersFilerRequest) returns (PlayerModels);
+	rpc GetPlayersByTeam (GetPlayersByTeamRequest) returns (PlayerModels);
+	rpc CreatePlayer (CreatePlayerRequest) returns (PlayerModel);
+	rpc UpdatePlayer (UpdatePlayerRequest) returns (PlayerModel);
+	rpc DeletePlayer (DeletePlayerRequest) returns (DeletePlayerResponse);
+}
+
+message GetPlayerRequest {
+	int32 id = 1;
+}
+
+message PlayerModel {
+	int32 id = 1;
+	string firstName = 2;
+	string lastName = 3;
+	int32 age = 4;
+	int32 jerseyNumber = 5;
+	string position = 6;
+	double price = 7;
+	string playerImage = 8;
+	bool isDeleted = 9;
+	int32 teamId = 10;
+}
+
+
+message GetPlayerByNameRequest {
+	string name = 1; 
+}
+
+message PlayerModels {
+	repeated PlayerModel players = 1;
+}
+
+message GetPlayersFilerRequest {
+	bool isDeleted = 1;
+}
+
+message GetPlayersByTeamRequest{
+	int32 teamId = 1;
+}
+
+message CreatePlayerRequest {
+	PlayerModel player = 1;
+}
+
+message UpdatePlayerRequest {
+	PlayerModel player = 1;
+}
+
+message DeletePlayerRequest {
+	int32 id = 1;
+}
+
+message DeletePlayerResponse {
+	bool success = 1;
+}
