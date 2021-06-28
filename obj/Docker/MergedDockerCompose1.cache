@@ -7,7 +7,7 @@ services:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: Fantasy.API
       target: base
-    container_name: fantasyapi
+    container_name: fantasy.api
     depends_on:
       fantasydb:
         condition: service_started
@@ -27,7 +27,7 @@ services:
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
     ports:
-    - published: 8002
+    - published: 8012
       target: 80
     tty: true
     volumes:
@@ -55,7 +55,7 @@ services:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: FantasyTeam.API
       target: base
-    container_name: fantasyteamapi
+    container_name: fantasyteam.api
     depends_on:
       fantasyteamdb:
         condition: service_started
@@ -75,7 +75,7 @@ services:
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
     ports:
-    - published: 8003
+    - published: 8013
       target: 80
     tty: true
     volumes:
@@ -101,7 +101,7 @@ services:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: League.API
       target: base
-    container_name: leagueapi
+    container_name: league.api
     depends_on:
       leaguedb:
         condition: service_started
@@ -122,11 +122,51 @@ services:
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
     ports:
-    - published: 8001
+    - published: 8011
       target: 80
     tty: true
     volumes:
     - C:\Users\User\source\repos\Fantasy\src\Services\League\League.API:/app:rw
+    - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\User\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\User\source\repos\Fantasy:/src:rw
+  league.grpc:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/League/League.GRPC/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: League.GRPC
+      target: base
+    container_name: league.grpc
+    depends_on:
+      leaguedb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseSettings:ConnectionString: Server=leaguedb;Port=5432;Database=LeagueDb;User
+        Id=admin;Password=admin1234;
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: leaguegrpc:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/League.GRPC.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 8010
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC:/app:rw
     - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
     - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
     - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro

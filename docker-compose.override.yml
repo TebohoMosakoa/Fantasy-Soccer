@@ -50,32 +50,42 @@ services:
       - portainer_data:/data
 
   fantasyteam.api:
-    container_name: fantasyteamapi
+    container_name: fantasyteam.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=fantasyteamdb:6379"
     depends_on:
       - fantasyteamdb
     ports:
-      - "8003:80"
+      - "8013:80"
 
   fantasy.api:
-    container_name: fantasyapi
+    container_name: fantasy.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://fantasydb:27017"
     depends_on:
       - fantasydb
     ports:
-      - "8002:80"
+      - "8012:80"
 
   league.api:
-    container_name: leagueapi
+    container_name: league.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=leaguedb;Port=5432;Database=LeagueDb;User Id=admin;Password=admin1234;"
     depends_on:
       - leaguedb
     ports:
-      - "8001:80"
+      - "8011:80"
+
+  league.grpc:
+    container_name: league.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=leaguedb;Port=5432;Database=LeagueDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - leaguedb
+    ports:
+      - "8010:80"
 

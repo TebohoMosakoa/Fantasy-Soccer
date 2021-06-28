@@ -1,4 +1,5 @@
-﻿using FantasyTeam.API.Models;
+﻿using FantasyTeam.API.GrpcServices;
+using FantasyTeam.API.Models;
 using FantasyTeam.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,10 +13,12 @@ namespace FantasyTeam.API.Controllers
     public class FantasyTeamsController : ControllerBase
     {
         private readonly IFantasyTeamRepository _repository;
+        private readonly PlayerGrpcService _playerGrpcService;
 
-        public FantasyTeamsController(IFantasyTeamRepository repository)
+        public FantasyTeamsController(PlayerGrpcService playerGrpcService, IFantasyTeamRepository repository)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _playerGrpcService = playerGrpcService;
+            _repository = repository;
         }
 
         [HttpGet("{userName}", Name = "GetFantasyTeam")]
@@ -30,6 +33,22 @@ namespace FantasyTeam.API.Controllers
         [ProducesResponseType(typeof(Fantasy_Team), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Fantasy_Team>> UpdateFantasyTeam([FromBody] Fantasy_Team team)
         {
+            //This is were we consume the League.GRPC service to get TeamPlayer information from the Player service.
+            foreach (var item in team.Players)
+            {
+                var player = await _playerGrpcService.GetPlayer(item.PlayerId);
+                TeamPlayer newPlayer = new TeamPlayer
+                {
+                    FirstName = player.FirstName,
+                    LastName = player.LastName,
+                    Price = player.Price,
+                    TeamId = player.TeamId,
+                    PlayerId = player.Id,
+                    PlayerImage = player.PlayerImage
+                };
+                team.Players.Add(newPlayer);
+                
+            }
             return Ok(await _repository.UpdateFantasyTeam(team));
         }
 

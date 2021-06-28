@@ -1,10 +1,13 @@
+using FantasyTeam.API.GrpcServices;
 using FantasyTeam.API.Repositories;
+using League.GRPC.Protos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace FantasyTeam.API
 {
@@ -26,6 +29,12 @@ namespace FantasyTeam.API
             });
             // General Configuration
             services.AddScoped<IFantasyTeamRepository, FantasyTeamRepository>();
+
+
+            services.AddGrpcClient<PlayerProtoService.PlayerProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:PlayerUrl"]));
+            services.AddScoped<PlayerGrpcService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

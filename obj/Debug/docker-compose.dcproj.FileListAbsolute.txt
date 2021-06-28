@@ -31,3 +31,12 @@ C:\Users\User\source\repos\Fantasy\bin\Debug\FantasyTeam.API.pdb
 C:\Users\User\source\repos\Fantasy\obj\Debug\docker-compose.dcprojAssemblyReference.cache
 C:\Users\User\source\repos\Fantasy\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\Fantasy\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\User\source\repos\Fantasy\bin\Debug\Google.Protobuf.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\Grpc.Core.Api.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\Grpc.Net.ClientFactory.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\Grpc.Net.Client.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\Grpc.Net.Common.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\League.GRPC.exe
+C:\Users\User\source\repos\Fantasy\bin\Debug\League.GRPC.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\Grpc.AspNetCore.Server.dll
+C:\Users\User\source\repos\Fantasy\bin\Debug\League.GRPC.pdb

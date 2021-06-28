@@ -3,7 +3,7 @@ services:
     build:
       context: C:\Users\User\source\repos\Fantasy
       dockerfile: src/Services/Fantasy/Fantasy.API/Dockerfile
-    container_name: fantasyapi
+    container_name: fantasy.api
     depends_on:
       fantasydb:
         condition: service_started
@@ -12,7 +12,7 @@ services:
       DatabaseSettings:ConnectionString: mongodb://fantasydb:27017
     image: fantasyapi
     ports:
-    - published: 8002
+    - published: 8012
       target: 80
   fantasydb:
     container_name: fantasydb
@@ -27,7 +27,7 @@ services:
     build:
       context: C:\Users\User\source\repos\Fantasy
       dockerfile: src/Services/FantasyTeam/FantasyTeam.API/Dockerfile
-    container_name: fantasyteamapi
+    container_name: fantasyteam.api
     depends_on:
       fantasyteamdb:
         condition: service_started
@@ -36,7 +36,7 @@ services:
       CacheSettings:ConnectionString: fantasyteamdb:6379
     image: fantasyteamapi
     ports:
-    - published: 8003
+    - published: 8013
       target: 80
   fantasyteamdb:
     container_name: fantasyteamdb
@@ -49,7 +49,7 @@ services:
     build:
       context: C:\Users\User\source\repos\Fantasy
       dockerfile: src/Services/League/League.API/Dockerfile
-    container_name: leagueapi
+    container_name: league.api
     depends_on:
       leaguedb:
         condition: service_started
@@ -59,7 +59,23 @@ services:
         Id=admin;Password=admin1234;
     image: leagueapi
     ports:
-    - published: 8001
+    - published: 8011
+      target: 80
+  league.grpc:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/League/League.GRPC/Dockerfile
+    container_name: league.grpc
+    depends_on:
+      leaguedb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:ConnectionString: Server=leaguedb;Port=5432;Database=LeagueDb;User
+        Id=admin;Password=admin1234;
+    image: leaguegrpc
+    ports:
+    - published: 8010
       target: 80
   leaguedb:
     container_name: leaguedb
