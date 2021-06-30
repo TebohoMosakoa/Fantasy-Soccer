@@ -11,20 +11,19 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_fantasy.api$
     volumes:
       - C:\Users\User\source\repos\Fantasy\src\Services\Fantasy\Fantasy.API:/app
       - C:\Users\User\source\repos\Fantasy:/src
       - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\User\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
+#$nuget_volume_mapping_fantasy.api$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/net5.0/Fantasy.API.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_fantasy.api$ \"/app/bin/Debug/net5.0/Fantasy.API.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
@@ -38,20 +37,19 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_fantasyteam.api$
     volumes:
       - C:\Users\User\source\repos\Fantasy\src\Services\FantasyTeam\FantasyTeam.API:/app
       - C:\Users\User\source\repos\Fantasy:/src
       - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\User\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
+#$nuget_volume_mapping_fantasyteam.api$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/net5.0/FantasyTeam.API.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_fantasyteam.api$ \"/app/bin/Debug/net5.0/FantasyTeam.API.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
@@ -66,20 +64,19 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_league.api$
     volumes:
       - C:\Users\User\source\repos\Fantasy\src\Services\League\League.API:/app
       - C:\Users\User\source\repos\Fantasy:/src
       - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\User\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
+#$nuget_volume_mapping_league.api$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/net5.0/League.API.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_league.api$ \"/app/bin/Debug/net5.0/League.API.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
@@ -94,20 +91,19 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_league.grpc$
     volumes:
       - C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC:/app
       - C:\Users\User\source\repos\Fantasy:/src
       - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\User\.nuget\packages\:/root/.nuget/packages:ro
-      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
+#$nuget_volume_mapping_league.grpc$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/net5.0/League.GRPC.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_league.grpc$ \"/app/bin/Debug/net5.0/League.GRPC.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

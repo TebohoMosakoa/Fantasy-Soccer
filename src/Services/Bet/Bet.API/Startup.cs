@@ -1,4 +1,5 @@
 using Bet.Application;
+using Bet.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace Bet.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationServices();
+            services.AddInfrastructureServices(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

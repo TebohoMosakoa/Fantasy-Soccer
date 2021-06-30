@@ -33,7 +33,7 @@ namespace Bet.Application.Features.Bets.Commands.Checkout
 
             _logger.LogInformation($"Bet {newBet.Id} is successfully created.");
 
-            await SendMail(newBet);
+            //await SendMail(newBet);
 
             return newBet.Id;
         }
