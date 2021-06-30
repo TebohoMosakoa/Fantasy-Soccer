@@ -203,6 +203,42 @@
             "rid": "win"
           }
         }
+      },
+      "Bet.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Bet.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Bet.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bet.Application.dll": {}
+        }
+      },
+      "Bet.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Bet.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bet.Domain.dll": {}
+        }
+      },
+      "Bet.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Bet.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Bet.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bet.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -576,10 +612,27 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Bet.Application/1.0.0": {
+      "type": "project",
+      "path": "../Bet.Application/Bet.Application.csproj",
+      "msbuildProject": "../Bet.Application/Bet.Application.csproj"
+    },
+    "Bet.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Bet.Domain/Bet.Domain.csproj",
+      "msbuildProject": "../Bet.Domain/Bet.Domain.csproj"
+    },
+    "Bet.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Bet.Infrastructure/Bet.Infrastructure.csproj",
+      "msbuildProject": "../Bet.Infrastructure/Bet.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Bet.Application >= 1.0.0",
+      "Bet.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.0",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 5.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
@@ -616,7 +669,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\User\\source\\repos\\Fantasy\\src\\Services\\Bet\\Bet.Application\\Bet.Application.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\Fantasy\\src\\Services\\Bet\\Bet.Application\\Bet.Application.csproj"
+            },
+            "C:\\Users\\User\\source\\repos\\Fantasy\\src\\Services\\Bet\\Bet.Infrastructure\\Bet.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\Fantasy\\src\\Services\\Bet\\Bet.Infrastructure\\Bet.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

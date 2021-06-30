@@ -34,6 +34,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       CacheSettings:ConnectionString: fantasyteamdb:6379
+      GrpcSettings:PlayerUrl: http://league.grpc
     image: fantasyteamapi
     ports:
     - published: 8013

@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\Bet.Application.deps.json
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\Bet.Application.dll
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\ref\Bet.Application.dll
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\Bet.Application.pdb
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.AssemblyInfo.cs
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.dll
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\ref\Bet.Application.dll
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.pdb

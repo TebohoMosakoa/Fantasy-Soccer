@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Bet.Infrastructure/1.0.0": {
+        "runtime": {
+          "Bet.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bet.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
