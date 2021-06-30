@@ -8,6 +8,7 @@ namespace FantasyTeam.API.Models
     public class Fantasy_Team
     {
         public string UserName { get; set; }
+        public string Name { get; set; }
         public List<TeamPlayer> Players { get; set; } = new List<TeamPlayer>();
 
         public Fantasy_Team()

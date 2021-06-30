@@ -1,0 +1,219 @@
+services:
+  fantasy.api:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/Fantasy/Fantasy.API/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Fantasy.API
+      target: base
+    container_name: fantasy.api
+    depends_on:
+      fantasydb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseSettings:ConnectionString: mongodb://fantasydb:27017
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: fantasyapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/Fantasy.API.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 8012
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\User\source\repos\Fantasy\src\Services\Fantasy\Fantasy.API:/app:rw
+    - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\User\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\User\source\repos\Fantasy:/src:rw
+  fantasydb:
+    container_name: fantasydb
+    image: mongo
+    ports:
+    - published: 27017
+      target: 27017
+    restart: always
+    volumes:
+    - mongo_data:/data/db:rw
+  fantasyteam.api:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/FantasyTeam/FantasyTeam.API/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: FantasyTeam.API
+      target: base
+    container_name: fantasyteam.api
+    depends_on:
+      fantasyteamdb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      CacheSettings:ConnectionString: fantasyteamdb:6379
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      GrpcSettings:PlayerUrl: http://league.grpc
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: fantasyteamapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/FantasyTeam.API.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 8013
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\User\source\repos\Fantasy\src\Services\FantasyTeam\FantasyTeam.API:/app:rw
+    - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\User\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\User\source\repos\Fantasy:/src:rw
+  fantasyteamdb:
+    container_name: fantasyteamdb
+    image: redis:alpine
+    ports:
+    - published: 6379
+      target: 6379
+    restart: always
+  league.api:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/League/League.API/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: League.API
+      target: base
+    container_name: league.api
+    depends_on:
+      leaguedb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseSettings:ConnectionString: Server=leaguedb;Port=5432;Database=LeagueDb;User
+        Id=admin;Password=admin1234;
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: leagueapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/League.API.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 8011
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\User\source\repos\Fantasy\src\Services\League\League.API:/app:rw
+    - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\User\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\User\source\repos\Fantasy:/src:rw
+  league.grpc:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/League/League.GRPC/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: League.GRPC
+      target: base
+    container_name: league.grpc
+    depends_on:
+      leaguedb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseSettings:ConnectionString: Server=leaguedb;Port=5432;Database=LeagueDb;User
+        Id=admin;Password=admin1234;
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: leaguegrpc:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/League.GRPC.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 8010
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC:/app:rw
+    - C:\Users\User\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\User\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\User\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\User\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\User\source\repos\Fantasy:/src:rw
+  leaguedb:
+    container_name: leaguedb
+    environment:
+      POSTGRES_DB: LeagueDb
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_USER: admin
+    image: postgres
+    ports:
+    - published: 5432
+      target: 5432
+    restart: always
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/:rw
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mosakoateboho@gmail.com.com
+      PGADMIN_DEFAULT_PASSWORD: admin1234
+    image: dpage/pgadmin4
+    ports:
+    - published: 5050
+      target: 80
+    restart: always
+    volumes:
+    - pgadmin_data:/root/.pgadmin:rw
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    ports:
+    - published: 8080
+      target: 8080
+    - published: 9000
+      target: 9000
+    restart: always
+    volumes:
+    - portainer_data:/data:rw
+    - /var/run/docker.sock:/var/run/docker.sock:rw
+version: '3.4'
+volumes:
+  mongo_data: {}
+  pgadmin_data: {}
+  portainer_data: {}
+  postgres_data: {}

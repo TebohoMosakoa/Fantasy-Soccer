@@ -18,9 +18,10 @@ namespace League.API.Controllers
         private readonly ITeamRepository _repo;
         private readonly ILogger<TeamsController> _logger;
         private readonly IMapper _mapper;
+
         public TeamsController(ITeamRepository repo, ILogger<TeamsController> logger, IMapper mapper)
         {
-            _repo = repo ?? throw new ArgumentNullException(nameof(_repo));
+            _repo = repo;
             _logger = logger;
             _mapper = mapper;
         }

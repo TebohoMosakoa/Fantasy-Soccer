@@ -34,7 +34,7 @@ namespace FantasyTeam.API.Controllers
         public async Task<ActionResult<Fantasy_Team>> UpdateFantasyTeam([FromBody] Fantasy_Team team)
         {
             //This is were we consume the League.GRPC service to get TeamPlayer information from the Player service.
-            foreach (var item in team.Players)
+            foreach(var item in team.Players)
             {
                 var player = await _playerGrpcService.GetPlayer(item.PlayerId);
                 TeamPlayer newPlayer = new TeamPlayer
@@ -47,8 +47,8 @@ namespace FantasyTeam.API.Controllers
                     PlayerImage = player.PlayerImage
                 };
                 team.Players.Add(newPlayer);
-                
             }
+            
             return Ok(await _repository.UpdateFantasyTeam(team));
         }
 
