@@ -20,7 +20,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<bool> Create(Team entity)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var affected =
             await connection.ExecuteAsync
                 ("INSERT INTO Teams(Name, LogoImage, JerseyImage, IsDeleted) VALUES(@Name, @Badge, @Jersey, @IsDeleted);",
@@ -35,7 +35,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<bool> Delete(int id)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var affected = await connection.ExecuteAsync
                     ("UPDATE Teams SET IsDeleted=@IsDeleted WHERE Id = @Id",
                             new { IsDeleted = true, Id = id });
@@ -49,7 +49,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<Team> Get(int id)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var team = await connection.QueryFirstOrDefaultAsync<Team>("SELECT * FROM Teams WHERE Id = @Id", new { Id = id });
 
             return team;
@@ -59,7 +59,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<IEnumerable<Team>> GetAll(bool isDeleted)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var teams = await connection.QueryAsync<Team>
                ("SELECT * FROM Teams WHERE IsDeleted = @IsDeleted", new { IsDeleted = isDeleted });
             return teams;
@@ -68,7 +68,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<IEnumerable<Team>> GetByName(string name)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var teams = await connection.QueryAsync<Team>("SELECT * FROM Teams WHERE Name = @Name", new { Name = name });
 
             return teams;
@@ -77,7 +77,7 @@ namespace League.GRPC.Repositories.Teams
         public async Task<bool> Update(Team entity)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
+            //connection.Open();
             var affected = await connection.ExecuteAsync
                ("UPDATE Teams SET Name=@Name, LogoImage = @Logo, JerseyImage = @Jersey WHERE Id = @Id",
                        new { entity.Name, Logo = entity.LogoImage, Jersey = entity.JerseyImage, entity.Id });

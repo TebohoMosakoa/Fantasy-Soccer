@@ -22,7 +22,7 @@ namespace League.API.Extensions
                 {
                     logger.LogInformation("Magrating postgesql database.");
 
-                    using var connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+                    using NpgsqlConnection connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
                     connection.Open();
 
                     using var command = new NpgsqlCommand

@@ -54,6 +54,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=fantasyteamdb:6379"
+      - "GrpcSettings:PlayerUrl=league.grpc"
     depends_on:
       - fantasyteamdb
     ports:

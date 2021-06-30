@@ -60,7 +60,6 @@ namespace League.API.Repositories.Teams
         public async Task<IEnumerable<Team>> GetAll(bool isDeleted)
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            connection.Open();
             var teams = await connection.QueryAsync<Team>
                ("SELECT * FROM Teams WHERE IsDeleted = @IsDeleted", new { IsDeleted = isDeleted });
             return teams;
