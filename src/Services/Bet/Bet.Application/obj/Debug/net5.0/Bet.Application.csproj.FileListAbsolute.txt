@@ -10,3 +10,6 @@ C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\ne
 C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.dll
 C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\ref\Bet.Application.dll
 C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.pdb
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\Bet.Domain.dll
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\bin\Debug\net5.0\Bet.Domain.pdb
+C:\Users\User\source\repos\Fantasy\src\Services\Bet\Bet.Application\obj\Debug\net5.0\Bet.Application.csproj.CopyComplete
