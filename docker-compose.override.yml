@@ -28,6 +28,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
+  betdb:
+    container_name: betdb
+    environment:
+        SA_PASSWORD: "Teboho_Mosakoa1@2345"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1433:1433"
+
   pgadmin:
     container_name: pgadmin
     environment:
@@ -89,4 +98,15 @@ services:
       - leaguedb
     ports:
       - "8010:80"
+
+
+  bet.api:
+    container_name: bet.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:BettingConnectionString=Server=betdb;Database=BetDb;User Id=sa;Password=Teboho_Mosakoa1@2345;"
+    depends_on:
+      - betdb
+    ports:
+      - "8014:80"
 

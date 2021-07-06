@@ -1,8 +1,9 @@
-﻿using Bet.Application.Behaviours;
+﻿using System.Reflection;
+using AutoMapper;
+using Bet.Application.Behaviours;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Bet.Application
 {

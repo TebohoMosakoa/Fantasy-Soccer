@@ -1,4 +1,30 @@
 services:
+  bet.api:
+    build:
+      context: C:\Users\User\source\repos\Fantasy
+      dockerfile: src/Services/Bet/Bet.API/Dockerfile
+    container_name: bet.api
+    depends_on:
+      betdb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings:BettingConnectionString: Server=betdb;Database=BetDb;User
+        Id=sa;Password=Teboho_Mosakoa1@2345;
+    image: betapi
+    ports:
+    - published: 8014
+      target: 80
+  betdb:
+    container_name: betdb
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Teboho_Mosakoa1@2345
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+    - published: 1433
+      target: 1433
+    restart: always
   fantasy.api:
     build:
       context: C:\Users\User\source\repos\Fantasy

@@ -13,6 +13,7 @@
           "Bet.Domain": "1.0.0",
           "FluentValidation": "10.2.3",
           "FluentValidation.DependencyInjectionExtensions": "10.2.3",
+          "MediatR": "9.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0"
         },

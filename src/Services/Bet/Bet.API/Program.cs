@@ -1,11 +1,9 @@
+using Bet.API.Extensions;
+using Bet.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Bet.API
 {
@@ -13,7 +11,15 @@ namespace Bet.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            host.MigrateDatabase<BetContext>((context, service) =>
+                {
+                    var logger = service.GetService<ILogger<BetContextSeed>>();
+                    BetContextSeed
+                            .SeedAsync(context, logger)
+                            .Wait();
+                });
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

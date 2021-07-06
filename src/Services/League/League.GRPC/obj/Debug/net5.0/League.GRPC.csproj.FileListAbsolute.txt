@@ -18,6 +18,7 @@ C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\bin\Debug\net
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\bin\Debug\net5.0\Grpc.Net.ClientFactory.dll
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\bin\Debug\net5.0\Grpc.Net.Common.dll
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\bin\Debug\net5.0\Npgsql.dll
+C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.csprojAssemblyReference.cache
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.AssemblyInfoInputs.cache
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.AssemblyInfo.cs
@@ -32,4 +33,3 @@ C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\ref\League.GRPC.dll
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.pdb
 C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.genruntimeconfig.cache
-C:\Users\User\source\repos\Fantasy\src\Services\League\League.GRPC\obj\Debug\net5.0\League.GRPC.csprojAssemblyReference.cache

@@ -10,6 +10,9 @@ services:
   leaguedb:
     image: postgres
 
+  betdb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   pgadmin:
     image: dpage/pgadmin4
 
@@ -41,8 +44,15 @@ services:
       context: .
       dockerfile: src/Services/League/League.GRPC/Dockerfile
 
+  bet.api:
+    image: ${DOCKER_REGISTRY-}betapi
+    build:
+      context: .
+      dockerfile: src/Services/Bet/Bet.API/Dockerfile
+
 volumes:
   mongo_data: 
   portainer_data:
   postgres_data:
   pgadmin_data:
+
